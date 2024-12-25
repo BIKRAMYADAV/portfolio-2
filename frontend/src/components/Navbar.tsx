@@ -10,7 +10,7 @@ function Navbar() {
         <Link to="/skills">skills</Link>
         <Link to="/cp">CP</Link>
         <Link to="/projects" className="hover:text-gray-600">projects</Link>
-        <Link to="" className="hover:text-gray-600">blogs</Link>
+        <Link to="https://medium.com/@bikramyadav.11" className="hover:text-gray-600" target="_blank">blogs</Link>
         <Link to="/contact" className="hover:text-gray-600">contact</Link>
      
     </nav>

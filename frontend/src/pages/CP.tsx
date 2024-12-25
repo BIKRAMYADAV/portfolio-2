@@ -1,37 +1,49 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import React, { useEffect, useState } from "react";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+const leetcodeApi = 'https://alfa-leetcode-api.onrender.com/'
+
+import axios from "axios";
+
+
 
 function CPDashboard() {
-  // Sample LeetCode stats and other platform data
-  const leetCodeStats = {
-    username: "BikramYadav",
-    solvedProblems: 250,
-    rating: 1800,
-    problemsSolvedToday: 5,
-    totalProblems: 2000,
-  };
+  const [leetcodeProfile,setLeetcodeProfile] = useState<any>();
+  const [leetcodeProblems,setLeetcodeProblems] = useState<any>();
+  const [leetcodeContest,setLeetcodeContest] = useState<any>();
+  
+  useEffect(() => {
+    const fetchLeetcodeData = async () => {
+      try {
+        // Parallel fetching
+        const [profileResponse, problemsResponse, contestResponse] = await Promise.all([
+          axios.get(`${leetcodeApi}bikram11_yv`),
+          axios.get(`${leetcodeApi}bikram11_yv/solved`),
+          axios.get(`${leetcodeApi}bikram11_yv/contest`)
+        ]);
+  
+        // Update state with responses
+        setLeetcodeProfile(profileResponse.data);
+        setLeetcodeProblems(problemsResponse.data);
+        setLeetcodeContest(contestResponse.data);
+  
+        console.log('Fetched profile: ', profileResponse.data);
+      } catch (error) {
+        console.error('Failed to fetch LeetCode stats:', error);
+      }
+    };
+  
+    fetchLeetcodeData();
+  }, []);
+  
 
+ 
   const otherPlatformStats = {
     codeforcesRating: 2100,
     hackerrankPoints: 320,
     atCoderRating: 1800,
   };
-
-  // Sample chart data for progress (you can replace it with actual data)
-  const chartData = {
-    labels: ['1', '2', '3', '4', '5', '6', '7'],
-    datasets: [
-      {
-        label: 'LeetCode Progress',
-        data: [10, 20, 30, 40, 50, 60, 70],
-        borderColor: 'rgba(75, 192, 192, 1)',
-        tension: 0.1,
-      },
-    ],
-  };
+ console.log('leetcode prfoile is : ',leetcodeProfile);
+ 
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
@@ -41,11 +53,12 @@ function CPDashboard() {
       {/* Profile Overview */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">LeetCode Stats</h2>
-        <p className="text-lg text-gray-600">Username: {leetCodeStats.username}</p>
-        <p className="text-lg text-gray-600">Total Problems Solved: {leetCodeStats.solvedProblems}</p>
+        <p className="text-lg text-gray-600">Username: {leetcodeProfile?.name}</p>
+        
+        {/* <p className="text-lg text-gray-600">Total Problems Solved: {leetCodeStats.solvedProblems}</p>
         <p className="text-lg text-gray-600">Rating: {leetCodeStats.rating}</p>
         <p className="text-lg text-gray-600">Problems Solved Today: {leetCodeStats.problemsSolvedToday}</p>
-        <p className="text-lg text-gray-600">Total Problems: {leetCodeStats.totalProblems}</p>
+        <p className="text-lg text-gray-600">Total Problems: {leetCodeStats.totalProblems}</p> */}
       </div>
 
       {/* Other Platform Stats */}
