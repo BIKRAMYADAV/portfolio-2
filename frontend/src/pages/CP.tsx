@@ -35,8 +35,8 @@ function CPDashboard() {
   }, []);
 
   const otherPlatformStats = {
-    codeforcesRating: 2100,
-    hackerrankPoints: 320,
+    codeforcesRating: 739,
+    hackerrankPoints: "4 stars in C++",
     atCoderRating: 1800,
   };
 
@@ -57,9 +57,9 @@ function CPDashboard() {
         {leetcodeProfile ? (
           <>
             <p className="text-lg text-gray-600">Username: {leetcodeProfile.name}</p>
-            <p className="text-lg text-gray-600">Total Problems Solved: {leetcodeProblems?.totalSolved || "N/A"}</p>
-            <p className="text-lg text-gray-600">Rating: {leetcodeProfile?.rating || "N/A"}</p>
-            <p className="text-lg text-gray-600">Recent Contest Rank: {leetcodeContest?.rank || "N/A"}</p>
+            <p className="text-lg text-gray-600">Total Problems Solved: {leetcodeProblems?.solvedProblem || "N/A"}</p>
+
+            <p className="text-lg text-gray-600">Rating: {leetcodeContest?.contestRating || "N/A"}</p>
           </>
         ) : (
           <p className="text-lg text-gray-600">Loading LeetCode stats...</p>
@@ -71,7 +71,6 @@ function CPDashboard() {
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">Other Platforms Stats</h2>
         <p className="text-lg text-gray-600">Codeforces Rating: {otherPlatformStats.codeforcesRating}</p>
         <p className="text-lg text-gray-600">HackerRank Points: {otherPlatformStats.hackerrankPoints}</p>
-        <p className="text-lg text-gray-600">AtCoder Rating: {otherPlatformStats.atCoderRating}</p>
       </div>
     </div>
   );
