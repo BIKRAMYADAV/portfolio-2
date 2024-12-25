@@ -18,9 +18,9 @@ function Hero() {
             I am an undergraduate student pursuing my IT degree from IIIT Bhubaneswar.
           </p>
           {/* Resume Button */}
-          <button className="bg-red-500 text-white text-lg font-medium py-2 px-6 rounded shadow-md hover:bg-gray-800 transition duration-300">
+          <a href="https://drive.google.com/file/d/1TfQGtWtQKf7ElK_WtPvwPaRh-LVwomkh/view?usp=sharing" target="_blank" className="bg-red-500 text-white text-lg font-medium py-2 px-6 rounded shadow-md hover:bg-gray-800 transition duration-300">
             Resume
-          </button>
+          </a>
         </div>
       </div>
     );
