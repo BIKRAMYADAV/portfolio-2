@@ -18,7 +18,7 @@ function Hero() {
             I am an undergraduate student pursuing my IT degree from IIIT Bhubaneswar.
           </p>
           {/* Resume Button */}
-          <button className="bg-black text-white text-lg font-medium py-2 px-6 rounded shadow-md hover:bg-gray-800 transition duration-300">
+          <button className="bg-red-500 text-white text-lg font-medium py-2 px-6 rounded shadow-md hover:bg-gray-800 transition duration-300">
             Resume
           </button>
         </div>
