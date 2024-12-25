@@ -4,7 +4,7 @@ function Hero() {
       {/* Image Section */}
       <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
         <img
-          src="/profile.png"
+          src="/profile3.jpg"
           alt="Profile"
           className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full border-4 border-red-500 object-cover"
         />
