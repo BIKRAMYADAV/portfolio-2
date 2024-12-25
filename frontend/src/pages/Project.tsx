@@ -37,7 +37,7 @@ function Projects() {
               <p className="text-lg text-gray-600 mb-4">{project.description}</p>
               <a
                 href={project.link}
-                className="inline-block bg-black text-white text-lg font-medium py-2 px-6 rounded shadow-md hover:bg-gray-800 transition duration-300"
+                className="inline-block bg-red-500 text-white text-lg font-medium py-2 px-6 rounded shadow-md hover:bg-gray-800 transition duration-300"
               >
                 View Project
               </a>

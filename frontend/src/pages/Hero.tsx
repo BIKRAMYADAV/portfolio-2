@@ -6,7 +6,7 @@ function Hero() {
           <img
             src="/profile.png"
             alt="Profile"
-            className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-black object-cover"
+            className="w-40 h-40 md:w-56 md:h-56 rounded-full border-4 border-red-500 object-cover"
           />
         </div>
         {/* Text Section */}
