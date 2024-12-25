@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-
-const leetcodeApi = 'https://alfa-leetcode-api.onrender.com/'
-
+import { useEffect, useState } from "react";
 import axios from "axios";
 
-
+const leetcodeApi = "https://alfa-leetcode-api.onrender.com/";
 
 function CPDashboard() {
-  const [leetcodeProfile,setLeetcodeProfile] = useState<any>();
-  const [leetcodeProblems,setLeetcodeProblems] = useState<any>();
-  const [leetcodeContest,setLeetcodeContest] = useState<any>();
-  
+  const [leetcodeProfile, setLeetcodeProfile] = useState<any>(null);
+  const [leetcodeProblems, setLeetcodeProblems] = useState<any>(null);
+  const [leetcodeContest, setLeetcodeContest] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+
   useEffect(() => {
     const fetchLeetcodeData = async () => {
       try {
@@ -20,45 +18,52 @@ function CPDashboard() {
           axios.get(`${leetcodeApi}bikram11_yv/solved`),
           axios.get(`${leetcodeApi}bikram11_yv/contest`)
         ]);
-  
+
         // Update state with responses
         setLeetcodeProfile(profileResponse.data);
         setLeetcodeProblems(problemsResponse.data);
         setLeetcodeContest(contestResponse.data);
-  
-        console.log('Fetched profile: ', profileResponse.data);
+
+        console.log("Fetched profile: ", profileResponse.data);
       } catch (error) {
-        console.error('Failed to fetch LeetCode stats:', error);
+        console.error("Failed to fetch LeetCode stats:", error);
+        setError("Failed to fetch LeetCode data. Please try again later.");
       }
     };
-  
+
     fetchLeetcodeData();
   }, []);
-  
 
- 
   const otherPlatformStats = {
     codeforcesRating: 2100,
     hackerrankPoints: 320,
     atCoderRating: 1800,
   };
- console.log('leetcode prfoile is : ',leetcodeProfile);
- 
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen">
       {/* Header */}
       <h1 className="text-3xl font-semibold text-gray-800 mb-8">CP Profile Dashboard</h1>
 
+      {error && (
+        <div className="bg-red-100 text-red-800 p-4 mb-4 rounded">
+          {error}
+        </div>
+      )}
+
       {/* Profile Overview */}
       <div className="bg-white p-6 rounded-lg shadow-md mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-4">LeetCode Stats</h2>
-        <p className="text-lg text-gray-600">Username: {leetcodeProfile?.name}</p>
-        
-        {/* <p className="text-lg text-gray-600">Total Problems Solved: {leetCodeStats.solvedProblems}</p>
-        <p className="text-lg text-gray-600">Rating: {leetCodeStats.rating}</p>
-        <p className="text-lg text-gray-600">Problems Solved Today: {leetCodeStats.problemsSolvedToday}</p>
-        <p className="text-lg text-gray-600">Total Problems: {leetCodeStats.totalProblems}</p> */}
+        {leetcodeProfile ? (
+          <>
+            <p className="text-lg text-gray-600">Username: {leetcodeProfile.name}</p>
+            <p className="text-lg text-gray-600">Total Problems Solved: {leetcodeProblems?.totalSolved || "N/A"}</p>
+            <p className="text-lg text-gray-600">Rating: {leetcodeProfile?.rating || "N/A"}</p>
+            <p className="text-lg text-gray-600">Recent Contest Rank: {leetcodeContest?.rank || "N/A"}</p>
+          </>
+        ) : (
+          <p className="text-lg text-gray-600">Loading LeetCode stats...</p>
+        )}
       </div>
 
       {/* Other Platform Stats */}
@@ -68,10 +73,9 @@ function CPDashboard() {
         <p className="text-lg text-gray-600">HackerRank Points: {otherPlatformStats.hackerrankPoints}</p>
         <p className="text-lg text-gray-600">AtCoder Rating: {otherPlatformStats.atCoderRating}</p>
       </div>
-
-    
     </div>
   );
 }
 
 export default CPDashboard;
+
