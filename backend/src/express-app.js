@@ -1,4 +1,4 @@
-const {message} = require('./routes')
+const {message} = require('./api')
 const express = require('express')
 
 
