@@ -1,3 +1,3 @@
 module.exports = {
-    email: require('./email-route')
+    message: require('./contact-route')
 }

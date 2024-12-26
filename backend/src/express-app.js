@@ -1,5 +1,7 @@
-const {email} = require('./routes')
+const {message} = require('./routes')
+const express = require('express')
 
 module.exports = (app) => {
-email(app);
+app.use(express.json());
+message(app);
 }
