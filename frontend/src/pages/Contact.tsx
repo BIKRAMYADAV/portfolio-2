@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-const apiURL = "http://localhost:3000/";
+const apiURL = "https://portfolio-2-one-eta.vercel.app/";
 
 interface IContactProps {
   name: string;
