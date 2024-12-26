@@ -2,6 +2,7 @@ const messageModel = require('../db/message-model')
 
 module.exports = (app) => {
     app.post('/send-mail', async (req, res) => {
+        console.log('The api was hit')
         const {name, email, message} = req.body;
         const messageToSave = new messageModel({
             name,email,message

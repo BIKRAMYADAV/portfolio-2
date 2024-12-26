@@ -5,7 +5,8 @@ const PORT = process.env.PORT
 const app = express()
 const expressApp = require('./src/express-app')
 const {mongoConnect} = require('./src/db/mongo-connection')
-
+const cors = require('cors')
+app.use(cors());
 expressApp(app);
 mongoConnect();
 app.listen(PORT, () => {
